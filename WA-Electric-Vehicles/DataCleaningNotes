@@ -1,0 +1,157 @@
+Date: 10/1/23
+# Retrieve Data:
+Electric Vehicle data from WA state
+https://catalog.data.gov/dataset/electric-vehicle-population-data
+Maintainer: Department of Licensing
+Public Access Level:	public
+License: http://opendatacommons.org/licenses/odbl/1.0/
+More info: https://data.wa.gov/Transportation/Electric-Vehicle-Population-Data/f6w7-q2d2
+
+Naming Conventions:
+EV PROJECT = Electric Vehicles in WA Project
+Folder - PortfolioProjects
++Create Folder: EV_WA
++Create Folder: OGdata, WorkingData
+Download data, copy and paste to both data folders
+
+
+Date: 10/2/23
+# Data Cleaning
+Open in Excel (10AM):
+Change Col A from ‘VIN (1-10)’ to ‘VIN’
+Check for & change blank cells
+-	Legislative district blanks – from out of WA state -> 0
+-	2020 Census track -> null
+-	Electric utility -> null
+-	Vehicle location -> null
+
+Open MySQL Workbench:
+-	Check server connection
+-	Create schema “electric_vehicle”
+-	Create table w/ import wizard from csv “wa_ev”
+
+## Ideas for exploration:
+--	Are certain EV types more dominant in the market?
+--	Do EV brands tend to partner with certain electric utility companies?
+--	Which makes and models are the most popular in Washington?
+--	How are electric vehicles distributed across different regions in Washington?
+
+## Are certain EV types more dominant in the market?
+### What EV types are in the data set?
+
+```
+SELECT DISTINCT `Electric Vehicle Type` FROM electric_vehicle.wa_ev;
+```
+
+o	Battery Electric Vehicle
+o	Plug-in Hybrid Electric Vehicle
+
+-	Count of VIN by EV type
+
+```
+SELECT `Electric Vehicle Type`, COUNT(VIN) AS VIN_Count
+FROM electric_vehicle.wa_ev
+GROUP BY `Electric Vehicle Type`
+ORDER BY VIN_Count DESC;  
+```
+
+--Battery Electric Vehicle BEV = 98107, Plug-in Hybrid Electric Vehicle PHEV = 28115
+
+## Which makes and models are the most popular in Washington?
+
+```
+SELECT Make, Model, COUNT(VIN) AS VIN_Count
+FROM wa_ev
+GROUP BY Make, Model
+ORDER BY VIN_Count DESC;
+```
+
+Export (save) (new folder) “Results”  / MostPopular
+
+## Do EV brands tend to partner with certain electric utility companies?
+### What companies are there?
+
+```
+SELECT DISTINCT `Electric Utility` FROM wa_ev
+```
+
+### Group all 'Bonneville Power Administration's as BPA, +2 more
+
+```
+SELECT 
+	CASE
+		WHEN `Electric Utility` LIKE 'BONNEVILLE POWER ADMINISTRATION%' THEN 'BPA'
+        WHEN `Electric Utility` LIKE '%puget sound energy%' THEN 'Puget Sound Energy'
+		WHEN `Electric Utility` LIKE '%pud%' THEN 'PUD'
+        ELSE `Electric Utility`
+	END AS `Modified Electric Utility`,
+    COUNT(*) AS `Count`
+FROM 
+	electric_vehicle.wa_ev
+GROUP BY 
+	`Modified Electric Utility`
+ORDER BY 
+	`Count` DESC;
+```
+
+### Now to put in order with make and model
+### Tesla S & Y most frequent across all utilities 
+## Most vehicles per county/city/zip code
+
+```
+SELECT
+	County,
+    COUNT(VIN) AS vehicle_count
+FROM
+	electric_vehicle.wa_ev
+GROUP BY
+	County
+ORDER BY
+	vehicle_count DESC;
+```
+
+Save as “CountyCount” under “Portfolio Projects” “EV_WA” “Results”
+Cont. for CityCount and ZipCount
+
+# Data Visualization
+## Open Tableau Public for visuals
+Plan for Dashboard Elements: Types (Pie), Popular (Bar), Locations (Map)
+-	Change Popular to Bubble Graph
+Font: Benton Sans
+Place all three charts on a dashboard.
+
+### Details:
+Coolors.co to find a usable color palette.
+Google Tesla and other EV companies to target a similar font.
+Save As to Tableau Public EV-Dashboard 
+
+### Link: https://public.tableau.com/views/EV-Dashboard/WAElectricVehicles?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link
+
+Review notes: 10/2/23 9PM
+
+-	Are certain EV types more dominant in the market?
+-	Do EV brands tend to partner with certain electric utility companies?
+-	Which makes and models are the most popular in Washington?
+-	How are electric vehicles distributed across different regions in Washington?
+
+# Insights
+## In Washington…
+### 1.	BEV dominate the market at 78%
+	When building charging stations around a business, consider inclusive use of charging stations: Level 1 & 2 Charging Stations accept all cars, but Level 3 may not*
+### 2.	3 out of 4 Top selling EV brands is Tesla
+	Consider carrying Tesla accessories
+### 3.	Weak correlation between utility companies and vehicle companies
+### 4.	EVs are more likely to travel in cities
+	Target marketing to Seattle, Olympia, Tacoma
+*Source: https://chargehub.com/en/electric-car-charging-guide.html#publiccharging
+
+
+Upload to GitHub
+Create Repository: PortfolioProjects
+License: Creative Commons
+Create Folder/File in PortfolioProjects: WA-Electric-Vehicles/EV-Dashboard
+Save To PortfolioProjects:
+My notes
+SQL Queries
+Read.me Template
+Image of Dashboard
