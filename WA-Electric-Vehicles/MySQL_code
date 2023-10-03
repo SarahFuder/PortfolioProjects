@@ -1,0 +1,125 @@
+# Full Dashboard Here: https://public.tableau.com/views/EV-Dashboard/WAElectricVehicles?:language=en-US&:display_count=n&:origin=viz_share_link
+
+MySQL Workbench Script (10/2/2023):
+
+# What types of EVs are in WA?
+SELECT DISTINCT `Electric Vehicle Type` FROM electric_vehicle.wa_ev;
+-- Battery Electric Vehicle & Plug-in Hybrid Electic Vehicle
+  
+# Explore if one type dominates the market 
+SELECT `Electric Vehicle Type`, COUNT(VIN) AS VIN_Count
+FROM electric_vehicle.wa_ev
+GROUP BY `Electric Vehicle Type`
+ORDER BY VIN_Count DESC;  
+# BEV = 98107, PHEV = 28115
+-- Battery Electric Vehicles Dominate the WA EV Market
+  
+# Explore Most Popular Makes and Models
+SELECT Make, Model, COUNT(VIN) AS VIN_Count
+FROM wa_ev
+GROUP BY Make, Model
+ORDER BY VIN_Count DESC; 
+-- Tesla in 3 of 4 top spots MODEL Y,3, & S
+  
+# Explore any connection between utility companies and EV make/model
+# What utility companies are included
+SELECT DISTINCT `Electric Utility` FROM wa_ev;
+
+# Group all 'Bonneville Power Administration's as BPA
+SELECT 
+	CASE
+		WHEN `Electric Utility` LIKE 'BONNEVILLE POWER ADMINISTRATION%' THEN 'BPA'
+        WHEN `Electric Utility` LIKE '%puget sound energy%' THEN 'Puget Sound Energy'
+		WHEN `Electric Utility` LIKE '%pud%' THEN 'PUD'
+        ELSE `Electric Utility`
+	END AS `Modified Electric Utility`,
+    COUNT(*) AS `Count`
+FROM 
+	electric_vehicle.wa_ev
+GROUP BY 
+	`Modified Electric Utility`
+ORDER BY 
+	`Count` DESC;
+-- Gives count of how many WA EVs within a company: Puget Sound Energy top
+
+  # Corresponding make and model
+WITH RankedMakesModels AS (
+	SELECT
+		`Modified Electric Utility`,
+        `Make`,
+        `Model`,
+        ROW_NUMBER() OVER (PARTITION BY `Modified Electric Utility` ORDER BY COUNT(*) DESC) AS RowNum
+	FROM (
+		SELECT
+			CASE
+				WHEN `Electric Utility` LIKE 'BONNEVILLE POWER ADMINISTRATION%' THEN 'BPA'
+				WHEN `Electric Utility` LIKE '%puget sound energy%' THEN 'Puget Sound Energy'
+				WHEN `Electric Utility` LIKE '%pud%' THEN 'PUD'
+				ELSE `Electric Utility`
+			END AS `Modified Electric Utility`,
+            `Make`,
+            `Model`
+		FROM
+			electric_vehicle.wa_ev
+	) AS ModifiedData
+	GROUP BY
+		`Modified Electric Utility`,
+		`Make`,
+		`Model`
+)
+SELECT
+	`Modified Electric Utility`,
+    `Make`,
+    `Model`
+FROM
+	RankedMakesModels
+WHERE 
+	RowNum <= 3
+ORDER BY
+	`Modified Electric Utility`,
+    RowNum;
+-- Tesla Model 3 & Model Y are top, Nissan Leaf close contender
+  
+# How are EVs distributed around WA state? County, City, Zip
+# By County
+SELECT
+	County,
+    COUNT(VIN) AS vehicle_count
+FROM
+	electric_vehicle.wa_ev
+GROUP BY
+	County
+ORDER BY
+	vehicle_count DESC;
+-- King County top
+
+# By City
+SELECT
+	City,
+    COUNT(VIN) AS city_count
+FROM
+	electric_vehicle.wa_ev
+GROUP BY
+	City
+ORDER BY
+	city_count DESC;
+-- Seattle top
+
+# By Zip Code
+SELECT
+	`Postal Code` AS ZIP_code,
+    COUNT(VIN) AS zip_count
+FROM
+	electric_vehicle.wa_ev
+GROUP BY
+	ZIP_code
+ORDER BY
+	zip_count DESC;
+
+# Pull location data for heat map in Tableau
+SELECT VIN, 
+`Vehicle Location`,
+`Legislative District`,
+`Clean Alternative Fuel Vehicle (CAFV) Eligibility`
+FROM wa_ev
+-- Not necessary but available
