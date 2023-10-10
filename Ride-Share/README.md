@@ -1,7 +1,8 @@
 # Sarah Fuder, Data Analyst Portfolio: Ride Share Dashboard
 
-![Project Image or Logo](project_image.png)
-Direct Link to Dashboard: https://github.com/SarahFuder/PortfolioProjects/blob/22fd8003a2241db1a909672591f5fba8c6bd2674/Ride-Share/Bike%20Excel%20Dashboard.xlsx
+![Dashboard](Ride-Share/bike-thumb.jpg)
+
+Direct Link to Dashboard: (https://github.com/SarahFuder/PortfolioProjects/blob/22fd8003a2241db1a909672591f5fba8c6bd2674/Ride-Share/Bike%20Excel%20Dashboard.xlsx)
 
 ## Project Overview
 
