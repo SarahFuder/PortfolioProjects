@@ -1,10 +1,10 @@
 # Sarah Fuder Portfolio: Lewis County Housing Sales 2021
 
-![Project Image or Logo](project_image.png)
 
 ## Project Overview
 
 This repository contains one of the projects I've worked on as a data analyst. The project focuses on exploring housing sales in 2021 from Lewis County, Washington.
+
 
 ## Table of Contents
 
@@ -15,8 +15,8 @@ This repository contains one of the projects I've worked on as a data analyst. T
 - [Project Files](#project-files)
 - [Usage](#usage)
 - [Results](#results)
-- [Contributing](#contributing)
 - [License](#license)
+
 
 ## Project Details
 
@@ -36,13 +36,22 @@ This repository contains one of the projects I've worked on as a data analyst. T
 - Data retrieved from Official Lewis County, Washington Database
 - Data storage and cleaning done in Excel
 - Visualizations and interactive dashboards were developed using Tableau Public
+- Line chart, Heat map, Geolocation, Box & Whisker Plot, Histogram, Map, Interactive Filters
 - I followed the Tableau tutorial titled 'TABLEAU PORTFOLIO PROJECT' on YouTube, created by Data With Mo. You can watch the tutorial https://youtu.be/CmOAXW24y2Y?si=Y8SiwpA2HYgAtnON.
 
 ## Project Files
 
-- **Notebooks:** [Link to Jupyter Notebook files if available.]
-- **Data:** [Link to the dataset(s) used in the project.]
-- **Results:** [Link to any result files, reports, or visualizations.]
+- **Original Data:**
+https://github.com/SarahFuder/PortfolioProjects/blob/9838a4cadd6f8c0cdebe3bed647c91002d1917a7/LewisCountyHousing2021/Residential.pdf
+- **Working Data (Excel):**
+https://github.com/SarahFuder/PortfolioProjects/blob/9838a4cadd6f8c0cdebe3bed647c91002d1917a7/LewisCountyHousing2021/county_housing.xlsx
+- **Sales Data Key:**
+https://github.com/SarahFuder/PortfolioProjects/blob/9838a4cadd6f8c0cdebe3bed647c91002d1917a7/LewisCountyHousing2021/Market-Neighborhood%20Key.docx
+- **Data Process Notes:**
+https://github.com/SarahFuder/PortfolioProjects/blob/9838a4cadd6f8c0cdebe3bed647c91002d1917a7/LewisCountyHousing2021/data-process-notes.docx
+- **Results:** https://github.com/SarahFuder/PortfolioProjects/blob/9838a4cadd6f8c0cdebe3bed647c91002d1917a7/LewisCountyHousing2021/Lewis%20County%20House%20Sales%202021.twbx
+- **Image of Dashboard:**
+https://github.com/SarahFuder/PortfolioProjects/blob/9838a4cadd6f8c0cdebe3bed647c91002d1917a7/LewisCountyHousing2021/Lewis%20County%20Dashboard.png
 
 ## Usage
 
@@ -53,12 +62,15 @@ This repository contains one of the projects I've worked on as a data analyst. T
 
 ## Results
 
-- [Summarize the key findings or insights from the project.]
-- [Include any visualizations or charts that demonstrate your results.]
+- Explore Interactive Dashboard
+  https://public.tableau.com/views/LewisCountyHouseSales2021/LewisCountyDashboard?:language=en-US&publish=yes&:display_count=n&:origin=viz_share_link
+- Lewis County house prices tend to rise with quality and condition of home.
+- Most houses in Lewis County were sold with less than 4 acres of land.
+- Most frequent house price was around $250,000
+- Average living space was just over 1,000 sq. feet.
 
 
 ## License
-
 - Creative Commons License
 
 ---
