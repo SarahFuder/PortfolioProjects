@@ -1,5 +1,7 @@
 # Washington Electric Vehicle Population
 
+Direct Link to Dashboard: https://public.tableau.com/app/profile/sarah.fuder/viz/EV-Dashboard/WAElectricVehicles
+
 ## Project Overview
 
 This repository contains one of the projects I've worked on as a data analyst. The project explores the population of electric vehicles in Washington.
