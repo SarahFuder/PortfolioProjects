@@ -1,5 +1,6 @@
 # Sarah Fuder Portfolio: Lewis County Housing Sales 2021
 
+Direct Link to Dashboard: https://public.tableau.com/app/profile/sarah.fuder/viz/LewisCountyHouseSales2021/LewisCountyDashboard
 
 ## Project Overview
 
