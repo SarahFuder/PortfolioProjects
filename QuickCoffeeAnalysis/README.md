@@ -1,4 +1,4 @@
-**Quick Coffee Shop Analysis Dashboard**
+*Quick Coffee Shop Analysis Dashboard*
 
 Completed 10/3/2025  by  Sarah Fuder
 
