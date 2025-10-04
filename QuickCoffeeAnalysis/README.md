@@ -1,32 +1,56 @@
 **Quick Coffee Shop Analysis Dashboard**
+
 Completed 10/3/2025  by  Sarah Fuder
 
 **Project Overview**
+
 This repository contains one of the projects I've worked on as a data analyst. The project emphasizes fast, reliable insights completed in under eight hours.  
 
+
 **Table of Contents**
+
 •	Project Overview
+
 •	Project Details
+
 •	Data Sources
+
 •	Tools and Technologies
+
 •	Results
 
+
 **Project Details**
+
 •	Objective: 
+
 1.	Profile and prepare the raw data for analysis
+
 2.	Explore the data with Excel Pivot Tables
+
 3.	Build a dynamic dashboard to visualize patterns and trends
+
+
 •	Methods Used: Find reliable data, data cleaning and exploration, data visualization, deliverable insights.
+
 •	Skills Demonstrated: Find Data, Excel Data Clean, Excel Interactive Dashboard, GitHub Repository, Update to Personal Website
+
 •	Project Duration: Completed in under 8 hours.
 
+
 **Data Sources**
+
 •	https://mavenanalytics.io/data-playground/coffee-shop-sales
 
+
 **Tools and Technologies**
+
 •	MS Excel
+
 •	Pivot Tables
+
 •	Pivot Charts
+
 
 **Results**
 
